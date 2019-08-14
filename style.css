@@ -1,5 +1,5 @@
 .style {   
-    border: 1px solid black;
+    border: 1px solid rgb(175, 175, 175);
     width: 20px;
     height: 20px;
     margin: 0;
@@ -7,7 +7,7 @@
 
 .clear {
     background-color: rgba(255, 255, 255, 0);
-    border: 1px solid black;
+    border: 1px solid rgb(175, 175, 175);
     width: 20px;
     height: 20px;
     margin: 0;
@@ -17,8 +17,10 @@
     padding: 0;
     margin: 0;
     display: flex;
-    width: 400px;
     flex-wrap: wrap;
     /* justify-content: space-around; */
 }
 
+.background {
+    background-size: 100% 100%
+}

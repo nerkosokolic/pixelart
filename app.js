@@ -1,11 +1,11 @@
 
 colorButton = document.querySelector("#color-btn")
 colorInput = document.querySelector("#color-selection")
-userColor = "green"
+userColor = "grey"
 
 // creates container
 
-for (i=0; i < 306; i++) {
+for (i=0; i < 3000; i++) {
     var divContainer = document.querySelector(".div-container")
     var divObjects = document.createElement('div')
     divObjects.classList.add("style","pixel")
@@ -52,6 +52,7 @@ var movieClick = function (event) {
     
     $.ajax(options).done(function(resp) {
         clearPixels()
+        div.classList.add("background")
         div.style.backgroundImage = `url('${resp.Poster}')`
     })
 }
