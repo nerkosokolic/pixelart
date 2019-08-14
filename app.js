@@ -1,16 +1,46 @@
 
+    // window.onload = function() {
+    //     displayWindowSize()
+    // }
+
+    // when resizing the view the reallocatePixels no longer works!
+
+var displayWindowSize = function() {
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+    var pixelSize = 20*20
+    var spacing = 10
+    var windowArea = (w-spacing) * (h-spacing)
+    var numberOfPixels = Math.floor(windowArea / pixelSize)
+    createBoard(numberOfPixels)
+}
+var createBoard = function(numOfPixels){
+    document.querySelector(".div-container").innerHTML = ""
+    for (i=0; i < numOfPixels; i++) {
+        var divObjects = document.createElement('div')
+        var divContainer = document.querySelector(".div-container")
+        divObjects.classList.add("style","pixel")
+        divContainer.appendChild(divObjects)
+    }
+    // debugger
+    pixels = reallocatePixels()
+}
+
+var reallocatePixels = function() {
+    return document.querySelectorAll(".pixel")
+}
+
+    
+displayWindowSize.call()
+
+var pixels
+
+
 colorButton = document.querySelector("#color-btn")
 colorInput = document.querySelector("#color-selection")
 userColor = "grey"
 
-// creates container
-
-for (i=0; i < 3000; i++) {
-    var divContainer = document.querySelector(".div-container")
-    var divObjects = document.createElement('div')
-    divObjects.classList.add("style","pixel")
-    divContainer.appendChild(divObjects)
-}
+// // creates container
 
 var changeColor = function(event) {
     userColor = colorInput.value
@@ -21,15 +51,9 @@ var changeColor = function(event) {
 colorButton.addEventListener('click', changeColor)
 
 
-var pixels = document.querySelectorAll(".pixel")
 var handleClick = function(event){
     event.target.style.background = userColor
 }
-
-pixels.forEach(pixel => {
-    pixel.addEventListener('mouseover', handleClick)
-})
-
 
 var movie_button = document.querySelector('#movie-btn')
 
@@ -38,8 +62,6 @@ var clearPixels = function() {
         pixel.classList.remove("style")
         pixel.classList.add("clear")
     })
-
-
 }
 
 var movieClick = function (event) {
@@ -56,5 +78,14 @@ var movieClick = function (event) {
         div.style.backgroundImage = `url('${resp.Poster}')`
     })
 }
-// `${mov.Title} : ${mov.Year}`
+
 movie_button.addEventListener('click', movieClick)
+
+
+
+window.addEventListener("resize", displayWindowSize);
+
+
+pixels.forEach(pixel => {
+    pixel.addEventListener('mouseover', handleClick)
+})
